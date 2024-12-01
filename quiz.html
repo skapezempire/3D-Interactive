@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digestive System AR</title>
+<style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1000px;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.quiz-button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+section.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px 0;
+}
+
+#ar-viewer {
+    flex: 1;
+    margin-right: 20px;
+}
+
+model-viewer {
+    width: 300px;
+    height: 500px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+.info {
+    flex: 1;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+.info h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.ar-button {
+    background-color: #000;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+.extra-images {
+    display: flex;
+    gap: 10px;
+}
+
+.extra-images img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Digestive System</h1>
+            <button class="quiz-button">quiz</button>
+        </header>
+
+        <section class="content">
+            <!-- AR 3D Model -->
+            <div id="ar-viewer">
+                <!-- Placeholder for the 3D model, this will need to be configured with an AR viewer library -->
+                <model-viewer src="digestive_system_model.glb" alt="Digestive System 3D Model" auto-rotate camera-controls ar></model-viewer>
+            </div>
+
+            <!-- Info section with tooltips for organs -->
+            <div class="info">
+                <h2>Mouth</h2>
+                <p>The mouth... (explain about the mouth here)</p>
+            </div>
+        </section>
+
+        <!-- AR buttons and extra images -->
+        <footer>
+            <button class="ar-button">View in your space</button>
+            <div class="extra-images">
+                <img src="brain_scan.jpg" alt="Brain Scan">
+                <img src="human_brain.jpg" alt="Human Brain">
+                <img src="duck.jpg" alt="Duck">
+                <img src="city_view.jpg" alt="City View">
+            </div>
+        </footer>
+    </div>
+
+    <script type="module" src="https://unpkg.com/@google/model-viewer@v1.10.1/dist/model-viewer.min.js"></script>
+    <script>
+        document.querySelector('.quiz-button').addEventListener('click', function() {
+    alert('Quiz functionality coming soon!');
+});
+
+// You can further enhance the AR view and 3D interactions by adding more features like annotations, etc.
+
+    </script>
+</body>
+</html>

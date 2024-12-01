@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Interactive - Human Digestive System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+                @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .header {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 3;
+            text-align: left;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+
+        .logo img {
+            width: 55px;
+            height: 50px;
+            border-radius: 17px;
+
+        }
+
+        .path-container {
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: auto;
+            z-index: 1;
+        }
+
+        .path-container img {
+            width: 614px;
+            height: auto;
+        }
+
+        .circle {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 1;
+    border: 3px solid transparent; /* Default border is transparent */
+}
+
+/* Specific colors for circles */
+.circle.orange {
+    background-color: orange;
+}
+
+.circle.yellow {
+    background-color: yellow;
+}
+
+.circle.red {
+    background-color: red;
+}
+
+.circle.green {
+    background-color: green;
+}
+
+.circle.purple {
+    background-color: purple;
+}
+
+.circle.blue {
+    background-color: blue;
+}
+
+
+.circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+
+       /* Hover effect */
+.circle:hover {
+    border-color: #F7F3A6; /* Add gold border on hover */
+    box-shadow: 0 0 10px #F7F3A6; /* Optional glow effect */
+}
+
+   /* Centered icon styles */
+.circle .icon {
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    z-index: 2;
+    top: 10%;
+    left: 87%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+        /* Popup menu styles */
+        .popup-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: -20px; /* Position above the circle */
+            left: 140px; /* To the right of the circle */
+            background-color: #1a1a1a;
+            color: #F7F3A6;
+            border: 2px solid#F7F3A6;
+            border-radius: 10px;
+            padding: 10px;
+            align-items: center;
+            font-size: 12px;
+            width: 220px;
+            box-shadow: 0 4px 8px rgba(255, 215, 0, 0.5);
+            z-index: 5;
+        }
+
+        .circle:hover .popup-menu {
+            display: block; /* Show popup on hover */
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Trophy image */
+        .popup-menu img {
+          width: 30px; /* Trophy icon size */
+          height: auto;
+          margin-bottom: 10px; /* Space between trophy and title */
+     }
+
+
+        /* Popup content */
+        .popup-menu h4 {
+    margin: 0;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column; /* Stack trophy and text vertically */
+    align-items: center;
+    justify-content: center;
+}
+
+        .popup-menu ul {
+            margin: 10px 0 0; /* Add some spacing at the top */
+            padding: 0;
+            list-style: none;
+        }
+
+        .popup-menu p {
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: center; /* Ensures the text is centered */
+}
+
+        .popup-menu ul li {
+            color: white;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 5px 0;
+            text-align: center; /* Ensures each list item is centered */
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>3D Interactive</h1>
+            <p>Human Digestive System</p>
+        </div>
+        <div class="logo">
+            <a href="#">
+            <img alt="Logo" src="images/brain.png" />
+          </a>
+        </div>
+       
+
+        <div class="path-container">
+            <img src="images/linePath.svg" alt="Line Path" />
+        </div>
+
+        <!-- Circles with images -->
+        <div class="circle blue" style="top: 130%; left: 45%;">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <a href="#">
+            <div class="popup-menu">
+                <h4><img src="images/trophy.png" alt="Trophy" /> Locked Content</h4>
+                <p>Complete previous sections to unlock this content.</p>
+            </div>
+        </a>
+        </div>
+
+        <div class="circle yellow" style="top: 23%; left: 33%;">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <a href="">
+            <div class="popup-menu">
+                <h4><img src="images/trophy.png" alt="Trophy" /> Locked Content</h4>
+                <p>Complete previous sections to unlock this content.</p>
+            </div>
+            </a>
+        </div>
+
+        <div class="circle red" style="top: 48%; left: 40%;">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <a href="#">
+            <div class="popup-menu">
+                <h4><img src="images/trophy.png" alt="Trophy" /> Locked Content</h4>
+                <p>Complete previous sections to unlock this content.</p>
+            </div>
+        </a>
+        </div>
+
+        <div class="circle green" style="top: 79%; left: 30%;">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <a href="#">
+            <div class="popup-menu">
+                <h4><img src="images/trophy.png" alt="Trophy" /> Locked Content</h4>
+                <p>Complete previous sections to unlock this content.</p>
+            </div>
+        </a>
+        </div>
+
+        <div class="circle purple" style="top: 110%; left: 27%;">
+            <div class="icon"><i class="fas fa-lock"></i></div>
+            <a href="#">
+            <div class="popup-menu">
+                <h4><img src="images/trophy.png" alt="Trophy" />Locked Content</h4>
+                <p>Complete previous sections to unlock this content.</p>
+            </div>
+        </a>
+        </div>
+
+
+
+
+        <div class="circle orange" style="top: 14%; left: 18%;">
+            <a href="digestiveAR.html">
+            <img alt="Digestive Image 1" src="images/ digestion.svg" />
+            <a href="progress.html">
+            <div class="popup-menu">
+                <h4>
+                    <img src="images/trophy.png" alt="Trophy" />
+                    Digestive System
+                </h4>
+                <p>Highest completion rate:</p>
+                <ul>
+                    <li>
+                        #1 Simpsons - 100%
+                        <i class="fas fa-medal" style="color: #F7F3A6; margin-left: 8px;"></i>
+                    </li>
+                    <li>
+                        #2 Evans - 95%
+                        <i class="fas fa-medal" style="color: silver; margin-left: 8px;"></i>
+                    </li>
+                    <li>
+                        #3 Judith - 85%
+                        <i class="fas fa-medal" style="color: #cd7f32; margin-left: 8px;"></i>
+                    </li>
+                    <li>
+                        #4 Laureate - 75%
+                        <i class="fas fa-award" style="color: gray; margin-left: 8px;"></i>
+                    </li>
+                </ul>
+                
+            </div>
+        </a>
+        </div>
+    </a>
+        
+       
+    </div>
+</body>
+</html>

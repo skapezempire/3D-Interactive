@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Interactive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            background-color: #000000fb;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: left;
+            margin-bottom: 20px;
+            padding-left: 50px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 14px;
+            color: #565555;
+        }
+
+        .logo{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+        .logo img{
+            width: 50px;
+            height: 50px;
+            border-radius: 17px;
+        }
+
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #b7b6b6;
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            width: calc(33.33% - 40px); /* Adjusts for 3 cards per row */
+            box-sizing: border-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card h2 {
+            font-size: 18px;
+            margin: 10px 0 5px 0;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #0b0a0a;
+        }
+
+        .card a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 992px) {
+            .card {
+                width: calc(50% - 40px); /* 2 cards per row for tablets */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                width: calc(100% - 40px); /* 1 card per row for mobile devices */
+            }
+        }
+        
+        .copyright {
+            text-align: center;
+            padding: 20px;
+            font-family: monospace;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>3D Interactive</h1>
+            <p>Medical Interactive Lessons</p>
+        </div>
+        <div class="logo"> <a href="#"><img src="images/image.png" alt="logo"></a></div>
+
+        <div class="card-grid">
+            <a href="activity.html" class="card">
+                <img src="images/digestives.png" alt="Human Digestive System" />
+                <h2>Human Digestive System</h2>
+                <p>Learn about the human digestive system in an interactive way.</p>
+            </a>
+
+            <a href="activity.html" class="card">
+                <img src="images/brain.png" alt="Human Brain" />
+                <h2>Human Brain</h2>
+                <p>Learn about the different parts of the human brain in an interactive way.</p>
+            </a>
+
+            <a href="activity.html" class="card">
+                <img src="images/plantcell.png" alt="Plant Cell" />
+                <h2>Plant Cell</h2>
+                <p>Learn about the plant cell in an interactive way.</p>
+            </a>
+
+            <a href="activity.html" class="card">
+                <img src="images/animalcell.png" alt="Animal Cell" />
+                <h2>Animal Cell</h2>
+                <p>Learn about the animal cell in an interactive way.</p>
+            </a>
+
+            <a href="activity.html" class="card">
+                <img src="images/urinary.png" alt="Urinary System" />
+                <h2>Urinary System</h2>
+                <p>Learn about the intriguing parts of the human urinary system.</p>
+            </a>
+
+            <a href="activity.html" class="card">
+                <img src="images/hearing.png" alt="Hearing System" />
+                <h2>Hearing System</h2>
+                <p>Learn about the intriguing parts of the hearing system.</p>
+            </a>
+        </div>
+
+        <div class="copyright">
+            <h3>Product of skapezMpier</h3>
+        </div>
+
+    </div>
+
+</body>
+</html>

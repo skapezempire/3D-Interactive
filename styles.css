@@ -1,0 +1,176 @@
+/* General Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #000;
+}
+
+/* Preloader Styles */
+#preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #000;
+}
+
+.preloader-content {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+#preloader-image {
+    width: 500px;
+    height: auto;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Black Overlay Effect */
+#preloader-image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 500px;
+    height: auto;
+}
+
+#preloader-image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Stronger transparency effect */
+    z-index: 2; /* Ensure it's above the image */
+    border-radius: 10px;
+}
+
+/* Text Container */
+.text-container {
+    position: absolute;
+    top: 35%; /* Adjust the vertical position of the text (experiment with values) */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 3; /* Ensure text is above the overlay */
+    width: 100%; /* Ensure the text doesn't wrap */
+}
+
+/* Prevent text wrapping */
+#animated-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.7); /* Glow effect */
+    margin: 0;
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0);
+    animation: blink 0.5s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+#sub-title {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#footer-text {
+    font-size: 1rem;
+    margin-top: 300px; /* Adjust this value for proper vertical positioning at the bottom */
+    color: white;
+}
+
+/* Timer Styling */
+#timer {
+    font-size: 2rem;
+    margin-top: 20px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0);
+}
+
+
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    #preloader-image {
+        width: 80%; /* Make image responsive on smaller screens */
+    }
+
+    /* Adjust text size for smaller screens */
+    #animated-text {
+        font-size: 1.5rem;
+    }
+
+    #sub-title {
+        font-size: 1rem;
+    }
+
+    #footer-text {
+        font-size: 0.9rem;
+        margin-top: 150px; /* Adjust bottom text positioning */
+    }
+
+    /* Make the preloader's text container more flexible */
+    .text-container {
+        top: 40%; /* Adjust position for mobile */
+    }
+
+    #preloader-image-wrapper {
+        width: 90%; /* Adjust wrapper width for smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #preloader-image {
+        width: 100%; /* Full-width on very small screens */
+    }
+
+    /* Further adjust text size for very small screens */
+    #animated-text {
+        font-size: 1.2rem;
+    }
+
+    #sub-title {
+        font-size: 0.9rem;
+    }
+
+    #footer-text {
+        font-size: 0.8rem;
+        margin-top: 100px; /* Further adjust bottom text for small devices */
+    }
+
+    .text-container {
+        top: 50%; /* Center text more vertically on very small screens */
+    }
+
+    #preloader-image-wrapper {
+        width: 100%; /* Full width for image wrapper */
+    }
+}
+
+
+

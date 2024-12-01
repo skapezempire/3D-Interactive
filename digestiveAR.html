@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+
+
+  <title>Digestive System AR</title>
+  <style>
+            @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+   body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .header {
+      background-color: #333;
+      top: 50px;
+      width: 80%;
+      margin: auto;
+      text-align: center;
+      align-self: center;
+      padding: 20px 0;
+      font-size: 2em;
+      position: relative;
+      border-radius: 10px; /* Optional for rounded edges */
+
+    }
+
+   
+    .quiz-button {
+  position: absolute;
+  top: 8px;
+  right: 20px;
+  background-color: #01010100;
+  color: #ffffff;
+  text-decoration: none; /* Removes underline */
+  border-radius: 25px;
+  width: 60px;
+  height: 60px;
+  font-size: 0.8em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Adds subtle shadow */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Style for the quiz iframe container */
+.quiz-container {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the iframe */
+  z-index: 1050; /* Ensure it's above other elements */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for focus effect */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  transition: opacity 0.3s ease;
+}
+
+.quiz-container iframe {
+  display: block;
+  margin: 0 auto;
+}
+
+.close-quiz-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-quiz-button:hover {
+  background-color: #555;
+}
+
+
+
+.quiz-button:hover {
+  transform: scale(1.1); /* Slightly enlarges the button */
+  background-color: #333; /* Changes background on hover */
+  color: #fff; /* Changes text color */
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5); /* Adds stronger shadow */
+}
+
+    .main {
+      margin-top: 20px;
+    }
+
+    .ar-container {
+      position: relative;
+      text-align: center;
+    }
+
+    .ar-main-image {
+        margin-top:80px ;
+      width: 100%;
+      max-width: 500px;
+    }
+
+ 
+    .info-container {
+      position: relative;
+      width: 500px;
+      height: 300px;
+      margin: 50px auto;
+      background: #000;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .info-point {
+      position: absolute;
+      background-color: #000;
+      color: rgba(255, 255, 255, 0.7);
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 25px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-point:hover {
+      transform: scale(1.2);
+      background-color: #555;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .tooltip {
+  display: none; /* Initially hidden */
+  position: absolute;
+  background-color: #000;
+  color: #fff;
+  padding: 15px;
+  border-radius: 12px;
+  width: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  transform: translate(-50%, -10px); /* Center and slightly offset */
+}
+    .tooltip h4 {
+      margin: 0 0 10px;
+      font-size: 16px;
+    }
+
+    .tooltip p {
+      margin: 0 0 15px;
+      font-size: 14px;
+    }
+
+    .tooltip-icons {
+  position: absolute; /* Position at the top-right corner */
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.tooltip-icons a:hover {
+  color:#F7F3A6; /* Highlight color on hover */
+  transform: scale(1.2); /* Slight enlargement on hover */
+}
+
+.tooltip-icons a {
+  color: #fff; /* Icon color */
+  font-size: 20px; /* Icon size */
+  text-decoration: none; /* Remove underline on links */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+
+.tooltip-icons a img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+    .tooltip-arrow {
+  position: absolute;
+  top: 100%; /* Align arrow to bottom of tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 10px 10px 0 10px;
+  border-color: #000 transparent transparent transparent;
+}
+
+.info-point:hover + .tooltip {
+  display: block; /* Show tooltip on hover */
+}
+.image-container {
+  position: relative;
+  text-align: center;
+  margin: 20px;
+}
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centers content horizontally */
+  background-color: #333; /* Dark background */
+  border-radius: 20px; /* Rounded edges */
+  padding: 10px 30px; /* Add padding for a spacious look */
+  max-width: 300px; /* Optional, control the max width of the button */
+  margin: 20px auto; /* Center the button on the page */
+  position: relative; /* Ensures precise positioning of child elements */
+}
+
+.button-container img {
+  height: 24px; /* Icon size */
+  width: 24px;
+  margin-right: 10px; /* Space between the icon and text */
+}
+
+.button-container span {
+  color: #fff; /* White text for contrast */
+  font-size: 16px; /* Medium-sized font */
+  font-family: Arial, sans-serif; /* Ensure readable font */
+  font-weight: bold; /* Add weight for clarity */
+  text-align: center;
+  position: relative;
+  top: -2px; /* Moves the text slightly upward */
+}
+
+.button-container:hover {
+  background-color: #444; /* Darker background on hover */
+}
+
+.button-container:active {
+  background-color: #555; /* Even darker background when active */
+}
+
+.button-container a {
+  text-decoration: none; /* Removes underline from any links inside */
+}
+
+
+
+.ar-main-image {
+  transition: transform 0.3s ease; /* Smooth zoom in/out */
+}
+
+
+.cards-section {
+  display: flex;
+  justify-content: center; /* Align cards to the start */
+  gap: 25px; /* Minimal space between cards */
+  margin-top: 20px;
+}
+
+.ar-card {
+  background-color: #ffffffad;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.ar-card:hover {
+  transform: scale(1.1);
+}
+
+.ar-card img {
+  width: 150px;
+  height: 170px;
+  border-radius: 10px;
+}
+
+
+    .ar-main-image-container {
+      position: relative;
+      display: inline-block;
+      max-width: 500px;
+      overflow: hidden;
+      margin: auto;
+    }
+
+    .ar-main-image {
+      width: 100%;
+      max-width: 500px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+
+
+    .image-container img {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Overlay styling */
+#overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 1); /* Dim background */
+  z-index: 10; /* Ensure it's on top */
+}
+
+/* Expanded image styling */
+#image-selector.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%; /* Adjusts to fit within the viewport */
+  max-height: 80%; /* Ensures it doesn't exceed the viewport */
+  object-fit: contain; /* Keeps the natural aspect ratio */
+  z-index: 1001; /* Above the overlay */
+  border-radius: 10px; /* Optional for rounded edges */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Add shadow for focus */
+  cursor: zoom-out;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
+}
+
+
+/* Action Buttons (General Style) */
+.action-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 30%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.action-button:hover {
+  transform: scale(1.2);
+  background-color: #555;
+}
+
+#zoomOut{
+    position: absolute;
+    top: -230px;
+}
+#zoomIn{
+    position: absolute;
+    top: -170px;
+}
+
+/* Expand Button */
+.expand-button-container {
+  position: absolute; /* Position relative to the container */
+  top: -300px; /* Place above zoom in/out buttons */
+  z-index: 1010; /* Ensure it's above everything else */
+}
+
+.expand-button {
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 30%; /* Circular button */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.expand-button:hover {
+  transform: scale(1.2); /* Highlight effect */
+  background-color: #555;
+}
+    
+
+model-viewer {
+  top: 50px;
+  width: 660px;
+  height: 660px;
+  background-color: #00000000;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 10px;
+  justify-content: center;
+  margin: auto;
+  padding: 0;
+}
+model-viewer.expanded {
+  z-index: 20;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+
+    /* Class to expand the model viewer */
+    .expand {
+      display: block;
+    }
+
+    /* Optional: style for a background overlay */
+    #Overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      z-index: 4; /* Background overlay below the model viewer */
+    }
+  </style>
+</head>
+<body>
+    <div class="header">
+        Digestive System
+        <a href="javascript:void(0);" class="quiz-button" onclick="showQuiz()">
+            <img src="images/Exam.svg" alt="Quiz Icon" width="24" height="24" />
+          </a>
+          
+         <!-- Hidden iframe container -->
+<div id="quiz-container" class="quiz-container">
+    <iframe allow="fullscreen; ;" allowfullscreen width="795" height="690" frameborder="0" src="https://www.educaplay.com/game/21637482-fill_in_the_blanks_exploring_the_human_brain.html"></iframe>
+    <button onclick="closeQuiz()" class="close-quiz-button">X</button>
+  </div>
+                
+        </div>
+        
+      
+      <main class="main">
+        <div class="ar-container">
+            <div class="ar-image">
+                <!-- The image is replaced by the model viewer -->
+                <model-viewer  id="ar-viewer"
+                src="https://cdn.glitch.global/a09c3114-dd01-424a-8dcd-88cb12a21c9e/digestive-system.glb?v=1703861363797"
+                ios-src="https://cdn.glitch.global/a09c3114-dd01-424a-8dcd-88cb12a21c9e/digestive-system.usdz?v=1703861365619"
+                ar 
+                ar-modes="webxr scene-viewer quick-look" 
+                camera-controls
+                poster="poster.png" 
+                shadow-intensity="1"
+                environment-image="neutral" 
+                auto-rotate>
+              </model-viewer>
+                    
+              
+              </div>
+              
+              <!-- Overlay and model-viewer container -->
+              <div id="Overlay"></div>
+              
+            <div class="info-point" style="top: 27%; left: 51%;" id="point1">i</div>
+            <div class="tooltip" style="top: 30%; left: 52%;">
+              <h4>Mouth</h4>
+              <p>The mouth begins digestion by breaking down food.</p>
+              <div class="tooltip-icons">
+                <a href="https://www.google.com/search?q=mouth" target="_blank">
+                  <img src="images/Ophthalmology.png" alt="details">  
+                </a>
+                  <a href="https://www.youtube.com/watch?v=xYXlNC8nDew&pp=ygUNbW91dGggYW5hdG9teQ%3D%3D" target="_blank">
+                    <i class="fas fa-video"></i>
+                  </a>
+                  <a href="https://shepherdd.com/web-stories/human-digestive-system/" target="_blank">
+                    <img src="images/burst.svg" alt="burst">                  </a>
+              </div>
+              <div class="tooltip-arrow"></div>
+            </div>
+    
+            <div class="info-point" style="top: 40%; left: 49%;" id="point2">i</div>
+            <div class="tooltip" style="top: 50%; left: 49%;">
+              <h4>Oesophagus</h4>
+              <p>The stomach processes and digests food.</p>
+              <div class="tooltip-icons">
+                <a href="https://www.google.com/search?q=mouth" target="_blank">
+                    <img src="images/Ophthalmology.png" alt="details">  
+                </a>
+                  <a href="https://www.youtube.com/" target="_blank">
+                    <i class="fas fa-video"></i>
+                  </a>
+                  <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
+                    <img src="images/burst.svg" alt="burst">                  </a>
+                  </a>
+              </div>
+              <div class="tooltip-arrow"></div>
+            </div>
+          </div>
+          <div class="info-point" style="top: 67%; left: 46%;" id="point2">i</div>
+          <div class="tooltip" style="top: 55%; left: 49%;">
+            <h4>Liver</h4>
+            <p>The liver processes nutrients and detoxifies harmful substances.</p>
+            <div class="tooltip-icons">
+                <a href="https://www.google.com/search?q=mouth" target="_blank">
+                    <img src="images/Ophthalmology.png" alt="details">  
+                </a>
+                  <a href="https://www.youtube.com/" target="_blank">
+                    <i class="fas fa-video"></i>
+                  </a>
+                  <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
+                    <img src="images/burst.svg" alt="burst">                  </a>
+                  </a>
+            </div>
+            <div class="tooltip-arrow"></div>
+          </div>
+        </div>
+        <div class="info-point" style="top: 75%; left: 47%;" id="point2">i</div>
+        <div class="tooltip" style="top: 50%; left: 49%;">
+          <h4>Small Intestine</h4>
+          <p>The small intestine absorbs nutrients and minerals from food.</p>
+          <div class="tooltip-icons">
+            <a href="https://www.google.com/search?q=mouth" target="_blank">
+                <img src="images/Ophthalmology.png" alt="details">  
+            </a>
+              <a href="https://www.youtube.com/" target="_blank">
+                <i class="fas fa-video"></i>
+              </a>
+              <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
+                <img src="images/burst.svg" alt="burst">                  </a>
+            </a>
+          </div>
+          <div class="tooltip-arrow"></div>
+        </div>
+      </div>
+      <div class="info-point" style="top: 79%; left: 53%;" id="point2">i</div>
+<div class="tooltip">
+  <h4>Colon</h4>
+  <p>The colon absorbs water and forms solid waste for elimination.</p>
+  <div class="tooltip-icons">
+    <a href="https://www.google.com/search?q=mouth" target="_blank">
+        <img src="images/Ophthalmology.png" alt="details">  
+    </a>
+      <a href="https://www.youtube.com/" target="_blank">
+        <i class="fas fa-video"></i>
+      </a>
+      <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
+        <img src="images/burst.svg" alt="burst">                  </a>
+    </a>
+  </div>
+  <div class="tooltip-arrow"></div>
+</div>
+    </div>
+  
+    <div class="button-container">
+        <a href="#" id="view-button">
+          <img alt="Icon representing a cube" src="images/Vector (1).svg" />
+          <span>View in your space</span>
+        </a>
+      </div>
+      <!-- The overlay for darkening the background -->
+  <div id="Overlay"></div>
+      <!-- The Model Viewer -->
+      
+      
+
+      <div class="image-container">
+      
+        <!-- Zoom and Expand Buttons -->
+        <div class="action-buttons">
+            <button id="zoomIn" class="action-button"><i class="fas fa-search-plus"></i></button>
+
+            <button id="zoomOut" class="action-button"><i class="fas fa-search-minus"></i></button>
+
+          
+
+        </div>
+      
+        <!-- Expand button -->
+        <div class="expand-button-container">
+            <button class="expand-button" onclick="expandImage()">
+                <i class="fas fa-expand-arrows-alt"></i>
+            </button>
+        </div>
+      
+        <!-- Overlay for expanded image -->
+        <div id="overlay" class="overlay" onclick="closeExpandedImage()"></div>
+      </div>
+
+      
+       
+      
+
+    <section class="cards-section">
+      <div class="ar-card">
+        <img src="images/oesophagus.jpg" alt="Brain">
+      </div>
+      <div class="ar-card">
+        <img src="/images/liver.jpg" alt="Duck">
+      </div>
+      <div class="ar-card">
+        <img src="/images/colon.jpeg" alt="Cell">
+      </div>
+      <div class="ar-card">
+        <img src="/images/smallintestine.jpeg" alt="Cell">
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+   document.querySelectorAll('.info-point').forEach((infoPoint) => {
+  const tooltip = infoPoint.nextElementSibling;
+
+  const showTooltip = () => {
+    const rect = infoPoint.getBoundingClientRect();
+
+    // Position the tooltip dynamically
+    tooltip.style.position = 'absolute';
+    tooltip.style.display = 'block';
+
+    // Calculate tooltip position
+    const tooltipTop = rect.top + window.scrollY - tooltip.offsetHeight - 6; // Above the info-point
+    const tooltipLeft = rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2; // Centered horizontally
+
+    // Ensure tooltip stays within viewport
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    if (tooltipTop < 0) {
+      // Move tooltip below if there's not enough space above
+      tooltip.style.top = `${rect.bottom + window.scrollY + 6}px`;
+    } else {
+      tooltip.style.top = `${tooltipTop}px`;
+    }
+
+    if (tooltipLeft < 0) {
+      tooltip.style.left = '6px'; // Adjust for left overflow
+    } else if (tooltipLeft + tooltip.offsetWidth > viewportWidth) {
+      tooltip.style.left = `${viewportWidth - tooltip.offsetWidth - 6}px`; // Adjust for right overflow
+    } else {
+      tooltip.style.left = `${tooltipLeft}px`;
+    }
+  };
+
+  const hideTooltip = () => {
+    tooltip.style.display = 'none';
+  };
+
+  // Add event listeners
+  infoPoint.addEventListener('mouseover', showTooltip);
+  infoPoint.addEventListener('mouseout', (event) => {
+    if (!tooltip.contains(event.relatedTarget)) {
+      hideTooltip();
+    }
+  });
+
+  tooltip.addEventListener('mouseover', showTooltip);
+  tooltip.addEventListener('mouseout', (event) => {
+    if (!infoPoint.contains(event.relatedTarget)) {
+      hideTooltip();
+    }
+  });
+
+    
+});
+
+ 
+
+function showQuiz() {
+  // Show the quiz container when the quiz button is clicked
+  document.getElementById("quiz-container").style.display = "block";
+  document.getElementById("quiz-container").style.opacity = 1;
+  // Add event listener to close quiz with escape key
+  document.addEventListener("keydown", closeQuizOnEscape);
+}
+
+function closeQuiz() {
+  // Hide the quiz container
+  document.getElementById("quiz-container").style.display = "none";
+  // Remove the escape key event listener when the quiz is closed
+  document.removeEventListener("keydown", closeQuizOnEscape);
+}
+
+function closeQuizOnEscape(event) {
+  // Check if the escape key (keyCode 27) is pressed
+  if (event.key === "Escape") {
+    closeQuiz();
+  }
+}
+document.getElementById('view-button').addEventListener('click', function(event) {
+      event.preventDefault();  // Prevent default anchor behavior
+
+      const modelViewer = document.getElementById('model-viewer');
+      const overlay = document.getElementById('overlay');
+
+      // Show the model viewer and overlay with the expand effect
+      modelViewer.classList.add('expand');
+      overlay.style.display = 'block'; // Show the overlay
+
+      // Optionally, hide the button and other content
+      document.querySelector('.button-container').style.display = 'none';
+      document.body.style.overflow = 'hidden'; // Prevent page scrolling when expanded
+
+      // Optional: Close the model viewer when the overlay is clicked
+      overlay.addEventListener('click', function() {
+        modelViewer.classList.remove('expand');
+        overlay.style.display = 'none';
+        document.querySelector('.button-container').style.display = 'block';
+        document.body.style.overflow = 'auto'; // Enable scrolling again
+      });
+    });
+function muteIframe() {
+    const iframe = document.querySelector('iframe');
+    iframe.contentWindow.postMessage('mute', '*');
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modelViewer = document.querySelector('model-viewer');
+    const zoomInButton = document.getElementById('zoomIn');
+    const zoomOutButton = document.getElementById('zoomOut');
+    const expandButton = document.querySelector('.expand-button');
+    const overlay = document.getElementById('overlay');
+
+    let currentZoom = 1; // Initial zoom level
+    const zoomStep = 0.1; // Zoom increment/decrement
+
+    // Zoom in logic
+    zoomInButton.addEventListener('click', () => {
+      currentZoom = Math.min(currentZoom + zoomStep, 2); // Limit max zoom
+      modelViewer.style.transform = `scale(${currentZoom})`;
+    });
+
+    // Zoom out logic
+    zoomOutButton.addEventListener('click', () => {
+      currentZoom = Math.max(currentZoom - zoomStep, 0.5); // Limit min zoom
+      modelViewer.style.transform = `scale(${currentZoom})`;
+    });
+
+    // Expand logic
+    let isExpanded = false;
+
+    expandButton.addEventListener('click', () => {
+      isExpanded = !isExpanded;
+
+      if (isExpanded) {
+        modelViewer.classList.add('expanded');
+        modelViewer.style.position = 'fixed';
+        modelViewer.style.top = '50%';
+        modelViewer.style.left = '50%';
+        modelViewer.style.transform = 'translate(-50%, -50%) scale(1)'; // Center and reset zoom
+        modelViewer.style.width = '90vw'; // Adjust width to 90% of viewport
+        modelViewer.style.height = '90vh'; // Adjust height to 90% of viewport
+        overlay.style.display = 'block'; // Show overlay
+      } else {
+        modelViewer.classList.remove('expanded');
+        modelViewer.style.position = '';
+        modelViewer.style.top = '';
+        modelViewer.style.left = '';
+        modelViewer.style.transform = `scale(${currentZoom})`; // Maintain zoom
+        modelViewer.style.width = '660px'; // Reset to original width
+        modelViewer.style.height = '660px'; // Reset to original height
+        overlay.style.display = 'none'; // Hide overlay
+      }
+    });
+
+
+    
+
+    // Close overlay on click
+    overlay.addEventListener('click', () => {
+      if (isExpanded) {
+        expandButton.click();
+      }
+    });
+  });
+
+
+  // Quiz modal handlers
+  function showQuiz() {
+    document.getElementById('quiz-container').style.display = 'block';
+  }
+
+  function closeQuiz() {
+    document.getElementById('quiz-container').style.display = 'none';
+  }
+
+  document.getElementById("view-button").addEventListener("click", function (event) {
+  event.preventDefault(); // Prevent the default link behavior
+
+  // Get the model-viewer element
+  const modelViewer = document.getElementById("ar-viewer");
+
+  // Trigger the AR experience
+  if (modelViewer.canActivateAR) {
+    modelViewer.activateAR();
+  } else {
+    alert("AR is not supported on your device or browser.");
+  }
+});
+
+  </script>
+
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@2.0.0/dist/model-viewer.min.js"></script>
+
+ 
+</body>
+</html>
