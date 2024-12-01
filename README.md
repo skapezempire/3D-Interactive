@@ -23,6 +23,11 @@ The decision-making process of making the immersive Ar experience work on most d
 
 Currently, most of the features are static because of the 6 day period we got to know of the hackathon. But we've worked seriously on the ones that we could do within the 6 days period.
 
+## Note
+Kindly note that the Ar feature works on mobiles only. Your device must support AR core for android and AR Kit for IOS users to experience it.
+
+Tools/resources:
+Modelviewer, HTML, CSS, Javascript, vercel, shepherdd/webstories, pexels, sketchfab
 
 What's next for 3D Interactive
 Continue building and adding new 3D models.
