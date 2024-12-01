@@ -27,7 +27,7 @@ Currently, most of the features are static because of the 6 day period we got to
 Kindly note that the Ar feature works on mobiles only. Your device must support AR core for android and AR Kit for IOS users to experience it.
 
 Tools/resources:
-Modelviewer, HTML, CSS, Javascript, vercel, shepherdd/webstories, pexels, sketchfab
+Modelviewer, HTML, CSS, Javascript, vercel, [shepherdd/web-stories](url), pexels, sketchfab
 
 What's next for 3D Interactive
 Continue building and adding new 3D models.
