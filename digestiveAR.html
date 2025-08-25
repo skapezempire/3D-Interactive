@@ -125,7 +125,7 @@
     }
 
     .info-point {
-      position: absolute;
+      position:absolute;
       background-color: #000;
       color: rgba(255, 255, 255, 0.7);
       border-radius: 50%;
@@ -159,16 +159,21 @@
   width: 250px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   z-index: 1000;
-  transform: translate(-50%, -10px); /* Center and slightly offset */
+  top: 100%; /* Position below the info-point */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
 }
     .tooltip h4 {
       margin: 0 0 10px;
       font-size: 16px;
+      text-align: left;
     }
 
     .tooltip p {
       margin: 0 0 15px;
       font-size: 14px;
+      text-align: left;
+
     }
 
     .tooltip-icons {
@@ -177,10 +182,9 @@
   right: 10px;
   display: flex;
   gap: 10px;
-}
+  }
 
 .tooltip-icons a:hover {
-  color:#F7F3A6; /* Highlight color on hover */
   transform: scale(1.2); /* Slight enlargement on hover */
 }
 
@@ -192,11 +196,15 @@
 }
 
 
-.tooltip-icons a img {
+.tooltip-icons img {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
+.tooltip-icons img:hover {
+  transform: scale(1.2); /* Slight enlargement on hover */
+}
+
     .tooltip-arrow {
   position: absolute;
   top: 100%; /* Align arrow to bottom of tooltip */
@@ -209,8 +217,23 @@
   border-color: #000 transparent transparent transparent;
 }
 
-.info-point:hover + .tooltip {
-  display: block; /* Show tooltip on hover */
+
+.toggle-button {
+  position: fixed;
+  top: 250px;
+  left: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1001; /* Ensure it's above other elements */
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+  background-color: #555;
 }
 .image-container {
   position: relative;
@@ -263,31 +286,39 @@
   transition: transform 0.3s ease; /* Smooth zoom in/out */
 }
 
-
-.cards-section {
-  display: flex;
-  justify-content: center; /* Align cards to the start */
-  gap: 25px; /* Minimal space between cards */
-  margin-top: 20px;
+.cards-container {
+transform: translateY(-50%);
+z-index: 1000;
+position: fixed;
+top: 50%;
+right: 20px;
+display: flex;
+justify-content: center; /* Align cards to the start */
+gap: 10px; /* Minimal space between cards */
+margin-top: 50px;
+flex-direction: column;
 }
 
 .ar-card {
-  background-color: #ffffffad;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: transform 0.3s;
+background-color: #ffffffad;
+padding: 8px; /* Reduced padding */
+border-radius: 10px;
+text-align: center;
+cursor: pointer;
+transition: transform 0.3s;
+width: 100px; /* Reduced card width */
+height: 110px; /* Reduced card height */
 }
 
 .ar-card:hover {
-  transform: scale(1.1);
+transform: scale(1.08);
 }
 
 .ar-card img {
-  width: 150px;
-  height: 170px;
-  border-radius: 10px;
+width:  100px;; /* Make image fill the card */
+height: 110px; /* Make image fill the card */
+border-radius: 10px;
+object-fit: cover; /* Ensure the image fits well inside the card */
 }
 
 
@@ -339,7 +370,6 @@
   cursor: zoom-out;
   transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition */
 }
-
 
 /* Action Buttons (General Style) */
 .action-button {
@@ -437,11 +467,93 @@ model-viewer.expanded {
       display: none;
       z-index: 4; /* Background overlay below the model viewer */
     }
+
+
+
+
+      @media only screen and (max-width: 768px) {
+    model-viewer {
+  width: 300px;
+  height: 450px;
+  
+    }
+    .expand-button {
+  width: 30px;
+  height: 30px; 
+}
+.action-button{
+  width: 30px;
+  height: 30px;
+}
+.header{
+  font-size: 20px;
+  text-align: left;
+  padding: 15px;
+}
+.quiz-button{
+  width: 35px;
+  height: 35px;
+}
+.toggle-button{
+  width: 80px;
+  top: 180px;
+  height: 40px;
+  padding: 5px;
+}
+.image-container{
+  margin: 5px;
+}
+.ar-card{
+  width: 50px; /* Reduced card width */
+height: 60px; /* Reduced card height */
+}
+.ar-card img{
+  width: 50px; /* Reduced card width */
+height: 60px; /* Reduced card height */
+}
+.tooltip p{
+  font-size: 9px;
+}
+.tooltip{
+  width: 150px;
+  height: 45px;
+  padding: 5px;
+}
+.tooltip h4{
+font-size: 12px;
+}
+.tooltip-icons img {
+  width: 15px;
+  height: 15px;
+}
+.tooltip-icons a {
+  font-size: 15px; /* Icon size */
+}
+#point3{
+  top: 70%; 
+  left: 36%;
+}
+#point4{
+  top: 75%; 
+  left: 40%;
+}
+#point5{
+  top: 80%; 
+  left: 65%;
+}
+.button-container{
+  width: 180px;
+}
+.button-container span{
+font-size: 15px;
+}
+
+  }
   </style>
 </head>
 <body>
     <div class="header">
-        Digestive System
+    Digestive System
         <a href="javascript:void(0);" class="quiz-button" onclick="showQuiz()">
             <img src="images/Exam.svg" alt="Quiz Icon" width="24" height="24" />
           </a>
@@ -473,29 +585,33 @@ model-viewer.expanded {
                     
               
               </div>
-              
+               <!-- Toggle Button -->
+       <button id="toggle-annotations" class="toggle-button">
+        Show Annotations
+      </button>
               <!-- Overlay and model-viewer container -->
               <div id="Overlay"></div>
               
             <div class="info-point" style="top: 27%; left: 51%;" id="point1">i</div>
-            <div class="tooltip" style="top: 30%; left: 52%;">
+            <div class="tooltip" id="tooltip1" style="top: 20%; left: 63%;">
               <h4>Mouth</h4>
               <p>The mouth begins digestion by breaking down food.</p>
               <div class="tooltip-icons">
                 <a href="https://www.google.com/search?q=mouth" target="_blank">
-                  <img src="images/Ophthalmology.png" alt="details">  
+                  <img src="images/Ophthalmology.png" alt="details" id="viewIn">  
                 </a>
                   <a href="https://www.youtube.com/watch?v=xYXlNC8nDew&pp=ygUNbW91dGggYW5hdG9teQ%3D%3D" target="_blank">
                     <i class="fas fa-video"></i>
                   </a>
                   <a href="https://shepherdd.com/web-stories/human-digestive-system/" target="_blank">
-                    <img src="images/burst.svg" alt="burst">                  </a>
+                    <img src="images/burst.svg" alt="burst">                 
+                   </a>
               </div>
               <div class="tooltip-arrow"></div>
             </div>
     
             <div class="info-point" style="top: 40%; left: 49%;" id="point2">i</div>
-            <div class="tooltip" style="top: 50%; left: 49%;">
+            <div class="tooltip" id="tooltip2" style="top: 43%; left: 60%;">
               <h4>Oesophagus</h4>
               <p>The stomach processes and digests food.</p>
               <div class="tooltip-icons">
@@ -506,14 +622,14 @@ model-viewer.expanded {
                     <i class="fas fa-video"></i>
                   </a>
                   <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
-                    <img src="images/burst.svg" alt="burst">                  </a>
+                    <img src="images/burst.svg" alt="burst">                
                   </a>
               </div>
               <div class="tooltip-arrow"></div>
             </div>
           </div>
-          <div class="info-point" style="top: 67%; left: 46%;" id="point2">i</div>
-          <div class="tooltip" style="top: 55%; left: 49%;">
+          <div class="info-point" style="top: 75%; left: 46%;" id="point3">i</div>
+          <div class="tooltip" id="tooltip3" style="top: 75%; left: 36%;">
             <h4>Liver</h4>
             <p>The liver processes nutrients and detoxifies harmful substances.</p>
             <div class="tooltip-icons">
@@ -524,14 +640,14 @@ model-viewer.expanded {
                     <i class="fas fa-video"></i>
                   </a>
                   <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
-                    <img src="images/burst.svg" alt="burst">                  </a>
+                    <img src="images/burst.svg" alt="burst">             
                   </a>
             </div>
             <div class="tooltip-arrow"></div>
           </div>
         </div>
-        <div class="info-point" style="top: 75%; left: 47%;" id="point2">i</div>
-        <div class="tooltip" style="top: 50%; left: 49%;">
+        <div class="info-point" style="top: 95%; left: 47%;" id="point4">i</div>
+        <div class="tooltip" id="tooltip4" style="top: 99%; left: 40%;">
           <h4>Small Intestine</h4>
           <p>The small intestine absorbs nutrients and minerals from food.</p>
           <div class="tooltip-icons">
@@ -542,14 +658,14 @@ model-viewer.expanded {
                 <i class="fas fa-video"></i>
               </a>
               <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
-                <img src="images/burst.svg" alt="burst">                  </a>
+                <img src="images/burst.svg" alt="burst">                 
             </a>
           </div>
           <div class="tooltip-arrow"></div>
         </div>
       </div>
-      <div class="info-point" style="top: 79%; left: 53%;" id="point2">i</div>
-<div class="tooltip">
+      <div class="info-point" style="top: 85%; left: 53%;" id="point5">i</div>
+<div class="tooltip" id="tooltip5" style="top: 84%; left: 65%;">
   <h4>Colon</h4>
   <p>The colon absorbs water and forms solid waste for elimination.</p>
   <div class="tooltip-icons">
@@ -557,16 +673,18 @@ model-viewer.expanded {
         <img src="images/Ophthalmology.png" alt="details">  
     </a>
       <a href="https://www.youtube.com/" target="_blank">
-        <i class="fas fa-video"></i>
+        <i class="fas fa-video" ></i>
       </a>
       <a href="https://en.wikipedia.org/wiki/Mouth" target="_blank">
-        <img src="images/burst.svg" alt="burst">                  </a>
+        <img src="images/burst.svg" alt="burst">                 
     </a>
   </div>
   <div class="tooltip-arrow"></div>
 </div>
     </div>
-  
+         
+              </div>
+
     <div class="button-container">
         <a href="#" id="view-button">
           <img alt="Icon representing a cube" src="images/Vector (1).svg" />
@@ -580,16 +698,14 @@ model-viewer.expanded {
       
 
       <div class="image-container">
-      
+       
         <!-- Zoom and Expand Buttons -->
         <div class="action-buttons">
             <button id="zoomIn" class="action-button"><i class="fas fa-search-plus"></i></button>
 
             <button id="zoomOut" class="action-button"><i class="fas fa-search-minus"></i></button>
 
-          
-
-        </div>
+    
       
         <!-- Expand button -->
         <div class="expand-button-container">
@@ -606,81 +722,140 @@ model-viewer.expanded {
        
       
 
-    <section class="cards-section">
-      <div class="ar-card">
-        <img src="images/oesophagus.jpg" alt="Brain">
+      <div class="cards-container">
+        
+          <div class="ar-card">
+            <img src="images/oesophagus.jpg" alt="Brain">
+          </div>
+          <div class="ar-card">
+            <img src="/images/liver.jpg" alt="Duck">
+          </div>
+          <div class="ar-card">
+            <img src="/images/colon.jpeg" alt="Cell">
+          </div>
+          <div class="ar-card">
+            <img src="/images/smallintestine.jpeg" alt="Cell">
+          </div>
+        
       </div>
-      <div class="ar-card">
-        <img src="/images/liver.jpg" alt="Duck">
-      </div>
-      <div class="ar-card">
-        <img src="/images/colon.jpeg" alt="Cell">
-      </div>
-      <div class="ar-card">
-        <img src="/images/smallintestine.jpeg" alt="Cell">
-      </div>
-    </section>
 
   </main>
 
   <script>
-   document.querySelectorAll('.info-point').forEach((infoPoint) => {
-  const tooltip = infoPoint.nextElementSibling;
 
-  const showTooltip = () => {
-    const rect = infoPoint.getBoundingClientRect();
 
-    // Position the tooltip dynamically
-    tooltip.style.position = 'absolute';
-    tooltip.style.display = 'block';
+//Annotations visiblity function bigins
 
-    // Calculate tooltip position
-    const tooltipTop = rect.top + window.scrollY - tooltip.offsetHeight - 6; // Above the info-point
-    const tooltipLeft = rect.left + window.scrollX + rect.width / 2 - tooltip.offsetWidth / 2; // Centered horizontally
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM fully loaded and parsed');
 
-    // Ensure tooltip stays within viewport
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
+  const toggleButton = document.getElementById('toggle-annotations');
+  if (!toggleButton) {
+    console.error('Toggle button not found!');
+    return;
+  }
+  console.log('Toggle button found:', toggleButton);
 
-    if (tooltipTop < 0) {
-      // Move tooltip below if there's not enough space above
-      tooltip.style.top = `${rect.bottom + window.scrollY + 6}px`;
-    } else {
-      tooltip.style.top = `${tooltipTop}px`;
-    }
+  const tooltips = [
+    document.getElementById('tooltip1'), // Mouth
+    document.getElementById('tooltip2'), // Oesophagus
+    document.getElementById('tooltip3'), // Liver
+    document.getElementById('tooltip4'), // Small Intestine
+    document.getElementById('tooltip5'), // Colon
+  ];
+  console.log('Tooltips:', tooltips);
 
-    if (tooltipLeft < 0) {
-      tooltip.style.left = '6px'; // Adjust for left overflow
-    } else if (tooltipLeft + tooltip.offsetWidth > viewportWidth) {
-      tooltip.style.left = `${viewportWidth - tooltip.offsetWidth - 6}px`; // Adjust for right overflow
-    } else {
-      tooltip.style.left = `${tooltipLeft}px`;
-    }
+  let annotationsVisible = false; // Track tooltip visibility state
+
+  // Function to show all tooltips
+  const showAllTooltips = () => {
+    console.log('Showing all tooltips');
+    tooltips.forEach((tooltip, index) => {
+      if (tooltip) {
+        tooltip.style.display = 'block';
+        console.log(`Tooltip ${index + 1} shown`);
+      } else {
+        console.error(`Tooltip ${index + 1} not found!`);
+      }
+    });
+    annotationsVisible = true;
+    toggleButton.textContent = 'Hide Annotations'; // Update button text
   };
 
-  const hideTooltip = () => {
-    tooltip.style.display = 'none';
+  // Function to hide all tooltips
+  const hideAllTooltips = () => {
+    console.log('Hiding all tooltips');
+    tooltips.forEach((tooltip, index) => {
+      if (tooltip) {
+        tooltip.style.display = 'none';
+        console.log(`Tooltip ${index + 1} hidden`);
+      } else {
+        console.error(`Tooltip ${index + 1} not found!`);
+      }
+    });
+    annotationsVisible = false;
+    toggleButton.textContent = 'Show Annotations'; // Update button text
   };
 
-  // Add event listeners
-  infoPoint.addEventListener('mouseover', showTooltip);
-  infoPoint.addEventListener('mouseout', (event) => {
-    if (!tooltip.contains(event.relatedTarget)) {
-      hideTooltip();
+  // Toggle button click event
+  toggleButton.addEventListener('click', (event) => {
+    console.log('Toggle button clicked');
+    event.stopPropagation(); // Prevent the event from bubbling up
+    if (annotationsVisible) {
+      hideAllTooltips();
+    } else {
+      showAllTooltips();
     }
   });
 
-  tooltip.addEventListener('mouseover', showTooltip);
-  tooltip.addEventListener('mouseout', (event) => {
-    if (!infoPoint.contains(event.relatedTarget)) {
-      hideTooltip();
+  // Handle hover behavior for individual tooltips
+  document.querySelectorAll('.info-point').forEach((infoPoint, index) => {
+    const tooltip = infoPoint.nextElementSibling;
+
+    const showTooltip = () => {
+      if (!annotationsVisible && tooltip) { // Only show on hover if annotations are not toggled
+        tooltip.style.display = 'block';
+        console.log(`Tooltip ${index + 1} shown on hover`);
+      }
+    };
+
+    const hideTooltip = () => {
+      if (!annotationsVisible && tooltip) { // Only hide on hover if annotations are not toggled
+        tooltip.style.display = 'none';
+        console.log(`Tooltip ${index + 1} hidden on hover`);
+      }
+    };
+
+    // Add event listeners for hover
+    infoPoint.addEventListener('mouseover', showTooltip);
+    infoPoint.addEventListener('mouseout', hideTooltip);
+
+    if (tooltip) {
+      tooltip.addEventListener('mouseover', showTooltip);
+      tooltip.addEventListener('mouseout', hideTooltip);
+    } else {
+      console.error(`Tooltip ${index + 1} not found for hover behavior!`);
     }
   });
 
-    
+  // Close tooltips when clicking outside
+  document.addEventListener('click', (event) => {
+    // Check if the click is outside both .info-point and .tooltip elements
+    if (
+      !event.target.closest('.info-point') &&
+      !event.target.closest('.tooltip') &&
+      !event.target.closest('.toggle-button') // Exclude the toggle button
+    ) {
+      hideAllTooltips();
+      console.log('Tooltips hidden on outside click');
+    }
+  });
 });
+ //Annotations visiblity function ends
 
- 
+
+
+
 
 function showQuiz() {
   // Show the quiz container when the quiz button is clicked
@@ -815,10 +990,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+
+
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+  });
+  
+  // Disable F12, Ctrl+Shift+I, and other dev tools
+  window.onkeydown = function(e) {
+    if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
+      e.preventDefault();
+    }
+    
+    // Example of checking for developer tools:
+  let element = new Image();
+  Object.defineProperty(element, 'id', {
+    get: function () {
+      // Trigger reload when developer tools are opened
+      document.location.reload();
+    }
+  });
+  console.log(element);
+  }
   </script>
 
   <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@2.0.0/dist/model-viewer.min.js"></script>
 
- 
+
 </body>
 </html>

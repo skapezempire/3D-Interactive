@@ -49,3 +49,23 @@ document.querySelectorAll('.ar-card').forEach(card => {
 });
 
 
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+
+// Disable F12, Ctrl+Shift+I, and other dev tools
+window.onkeydown = function(e) {
+  if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
+    e.preventDefault();
+  }
+  
+  // Example of checking for developer tools:
+let element = new Image();
+Object.defineProperty(element, 'id', {
+  get: function () {
+    // Trigger reload when developer tools are opened
+    document.location.reload();
+  }
+});
+console.log(element);
+}

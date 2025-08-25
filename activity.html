@@ -67,14 +67,15 @@
         }
 
         .path-container img {
-            width: 614px;
-            height: auto;
+            width: 100%;
+    height: auto;
+    max-width: 600px; /* Prevent it from being too large on desktop */
         }
 
         .circle {
     position: absolute;
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -197,6 +198,94 @@
             text-align: center; /* Ensures each list item is centered */
 
         }
+
+
+        /* Desktop positions */
+.circle-1 { top: 130%; left: 45%; }
+.circle-2 { top: 23%; left: 33%; }
+.circle-3 { top: 48%; left: 44%; }
+.circle-4 { top: 79%; left: 35%; }
+.circle-5 { top: 110%; left: 27%; }
+.circle-6 { top: 14%; left: 18%; }
+
+
+
+@media (max-width: 768px) {
+    .circle-1 { top: 120%; left: 50%; transform: translateX(-50%); }
+    .circle-2 { top: 30%; left: 47%; }
+    .circle-3 { top: 55%; left: 55%; }
+    .circle-4 { top: 85%; left: 31%; }
+    .circle-5 { top: 105%; left: 28%; }
+    .circle-6 { top: 10%; left: 15%; }
+}
+
+@media (max-width: 480px) {
+    .circle-1 { top: 93%; left: 80%; transform: translateX(-50%); }
+    .circle-2 { top: 23%; left: 50%; }
+    .circle-3 { top: 50%; left: 55%; }
+    .circle-4 { top: 70%; left: 30%; }
+    .circle-5 { top: 87%; left: 45%; }
+    .circle-6 { top: 12%; left: 10%; }
+}
+
+
+
+        /* Responsive positioning for circles */
+@media (max-width: 1024px) {
+    .circle {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 18px;
+    }
+    .circle {
+        width: 70px;
+        height: 70px;
+    }
+    .circle .icon {
+        font-size: 20px;
+        top: 5%;
+        left: 80%;
+    }
+    .popup-menu {
+        width: 180px;
+        font-size: 11px;
+        left: 100px;
+    }
+    .path-container {
+        top: 100px;
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        top: 10px;
+        left: 10px;
+    }
+    .logo {
+        top: 10px;
+        right: 10px;
+    }
+    .circle {
+        width: 50px;
+        height: 50px;
+    }
+    .circle .icon {
+        font-size: 16px;
+        top: 0;
+        left: 70%;
+    }
+    .popup-menu {
+        display: none; /* Hide popup on small screens or use click event instead */
+    }
+}
+
+
     </style>
 </head>
 <body>
@@ -217,7 +306,7 @@
         </div>
 
         <!-- Circles with images -->
-        <div class="circle blue" style="top: 130%; left: 45%;">
+        <div class="circle blue circle-1">
             <div class="icon"><i class="fas fa-lock"></i></div>
             <a href="#">
             <div class="popup-menu">
@@ -227,7 +316,7 @@
         </a>
         </div>
 
-        <div class="circle yellow" style="top: 23%; left: 33%;">
+        <div class="circle yellow circle-2">
             <div class="icon"><i class="fas fa-lock"></i></div>
             <a href="">
             <div class="popup-menu">
@@ -237,7 +326,7 @@
             </a>
         </div>
 
-        <div class="circle red" style="top: 48%; left: 40%;">
+        <div class="circle red circle-3">
             <div class="icon"><i class="fas fa-lock"></i></div>
             <a href="#">
             <div class="popup-menu">
@@ -247,7 +336,7 @@
         </a>
         </div>
 
-        <div class="circle green" style="top: 79%; left: 30%;">
+        <div class="circle green circle-4">
             <div class="icon"><i class="fas fa-lock"></i></div>
             <a href="#">
             <div class="popup-menu">
@@ -257,7 +346,7 @@
         </a>
         </div>
 
-        <div class="circle purple" style="top: 110%; left: 27%;">
+        <div class="circle purple circle-5">
             <div class="icon"><i class="fas fa-lock"></i></div>
             <a href="#">
             <div class="popup-menu">
@@ -270,7 +359,7 @@
 
 
 
-        <div class="circle orange" style="top: 14%; left: 18%;">
+        <div class="circle orange circle-6">
             <a href="digestiveAR.html">
             <img alt="Digestive Image 1" src="images/ digestion.svg" />
             <a href="progress.html">
@@ -306,5 +395,28 @@
         
        
     </div>
+
+    <script>
+        document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+      });
+      
+      // Disable F12, Ctrl+Shift+I, and other dev tools
+      window.onkeydown = function(e) {
+        if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73)) {
+          e.preventDefault();
+        }
+        
+        // Example of checking for developer tools:
+      let element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function () {
+          // Trigger reload when developer tools are opened
+          document.location.reload();
+        }
+      });
+      console.log(element);
+      }
+        </script>
 </body>
 </html>
